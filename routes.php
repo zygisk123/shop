@@ -9,4 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['addItem'])) {
+        ItemController::addItem();
+    }
+}
+
 ?>

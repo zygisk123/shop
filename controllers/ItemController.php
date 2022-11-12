@@ -8,6 +8,12 @@ class ItemController {
         return Item::all();
     }
 
+    public static function addItem()
+    {
+        Item::create();
+    }
+
+
 
 
 }
