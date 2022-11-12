@@ -12,9 +12,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="<?=$_USER_PATH."/views/shop/add.php"?>">ADD NEW SHOES</a>
             </li>   
-            <form class="d-flex" role="search">
+            <form class="d-flex" role="search" method='GET'>
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button class="btn btn-outline-success" name = "search" type="submit">Search</button>
             </form>
         </ul>
     </div>

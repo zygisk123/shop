@@ -35,6 +35,11 @@ class ItemController {
         Item::destroy($id);
     }
 
+    public static function search()
+    {
+        return Item::search();
+    }
+
 
 
 

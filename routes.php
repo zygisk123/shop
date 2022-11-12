@@ -19,6 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         header("Location: ".$_USER_PATH."/views/shop/showAll.php");
         die;
     }
+    if (isset($_GET['search'])){
+        $searchItems = ItemController::search();
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

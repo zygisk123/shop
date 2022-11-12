@@ -79,6 +79,20 @@ class Item {
         $db->conn->close(); 
     }
 
+    public static function search()
+    {
+        $items = [];
+        $db = new DB();
+        $query = "SELECT * FROM `items` WHERE `name` like  \"%" . $_GET['search'] . "%\"";
+        $result = $db->conn->query($query);
+        while ($row = $result->fetch_assoc()) {
+            $items[] = new Item($row['id'], $row['name'], $row['brand'], $row['price'], $row['size'], $row['about']);
+        }
+        $db->conn->close();
+        return $items;
+
+    }
+
 
 }
 ?>
