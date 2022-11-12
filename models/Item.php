@@ -52,7 +52,7 @@ class Item {
         $query = "SELECT * FROM `items` WHERE `id` = " . $id;
         $result = $db->conn->query($query);
         while ($row = $result->fetch_assoc()) {
-            $item[] = new Item($row['id'], $row['name'], $row['brand'], $row['price'], $row['size'], $row['about']);
+            $item = new Item($row['id'], $row['name'], $row['brand'], $row['price'], $row['size'], $row['about']);
         }
         $db->conn->close();
         return $item;

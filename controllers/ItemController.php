@@ -13,6 +13,10 @@ class ItemController {
         Item::create();
     }
 
+    public static function showItem($id)
+    {
+        return Item::find($id);
+    }
 
 
 
