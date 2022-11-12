@@ -36,6 +36,7 @@
             <div class="col-4"></div>
         </div>
     </div>  
+    <?php include $_ADMIN_PATH . "/views/components/bottom.php"; ?>
 </body>
 </html>
 

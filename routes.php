@@ -9,9 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
     if (isset($_GET['itemID'])){
         $item = ItemController::showItem($_GET['itemID']);
+        $items = ItemController::getAll();
     }    
     if (isset($_GET['goToEdit'])){
         $item = ItemController::showItem($_GET['id']);
+        $items = ItemController::getAll();
     }
     if (isset($_GET['delete'])){
         $item = ItemController::deleteItem($_GET['id']);
@@ -21,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
     if (isset($_GET['search'])){
         $searchItems = ItemController::search();
+        $items = ItemController::getAll();
     }
 }
 
