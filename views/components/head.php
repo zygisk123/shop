@@ -3,6 +3,8 @@ session_start();
 $_ADMIN_PATH = $_SERVER['DOCUMENT_ROOT']."/shop";
 $_USER_PATH = "http://".$_SERVER['SERVER_NAME']."/shop";
 
+include $_ADMIN_PATH . "/routes.php";
+
 ?>
 
 <!DOCTYPE html>

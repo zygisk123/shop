@@ -1,5 +1,7 @@
 <?php
 
+include $_ADMIN_PATH.('/models/DB.php');
+
 class Item {
     public $id;
     public $name;
