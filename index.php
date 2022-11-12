@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    HOME PAGE
     
 </body>
 </html>
