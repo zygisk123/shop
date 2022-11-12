@@ -23,17 +23,23 @@
                         <?=$item->about?>
                     </a>
                 </div>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <form action="<?=$_USER_PATH.'/views/shop/edit.php'?>" method="get">
+                            <input type="hidden" name="id" value="<?=$item->id?>">
+                            <button type="submit" name="goToEdit" class="btn btn-primary">Edit</button>
+                        </form>
+                    </div>
+                    <div class="col-6">
+                        <form action="<?=$_USER_PATH.'/views/shop/showAll.php'?>" method="get">
+                            <input type="hidden" name="id" value="<?=$item->id?>">
+                            <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="col-4"></div>
         </div>
-        <form action="<?=$_USER_PATH.'/views/shop/edit.php'?>" method="get">
-            <input type="hidden" name="id" value="<?=$item->id?>">
-            <button type="submit" name="goToEdit" class="btn btn-success">Edit</button>
-        </form>
-        <form action="<?=$_USER_PATH.'/views/shop/showAll.php'?>" method="get">
-            <input type="hidden" name="id" value="<?=$item->id?>">
-            <button type="submit" name="delete" class="btn btn-success">Delete</button>
-        </form>
     </div>
 </body>
 </html>

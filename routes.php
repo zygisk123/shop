@@ -13,6 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['goToEdit'])){
         $item = ItemController::showItem($_GET['id']);
     }
+    if (isset($_GET['delete'])){
+        $item = ItemController::deleteItem($_GET['id']);
+        $items = ItemController::getAll();
+        header("Location: ".$_USER_PATH."/views/shop/showAll.php");
+        die;
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

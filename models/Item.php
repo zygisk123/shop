@@ -72,9 +72,9 @@ class Item {
     {
         $db = new DB();
         $stmt = $db->conn->prepare("DELETE FROM `items` WHERE `id` = ?");
-        $stmt->bind_param("i", $_POST['id']);
+        $stmt->bind_param("i", $id);
         $stmt->execute();
- 
+
         $stmt->close();
         $db->conn->close(); 
     }

@@ -30,6 +30,11 @@ class ItemController {
         $item->update();
     }
 
+    public static function deleteItem($id)
+    {
+        Item::destroy($id);
+    }
+
 
 
 
