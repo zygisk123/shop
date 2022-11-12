@@ -61,10 +61,9 @@ class Item {
     public function update()
     {
         $db = new DB();
-        $stmt = $db->conn->prepare("UPDATE `items` SET `name`= ? ,`brand`= ? ,`price`= ?, `size` = ?, `about` = ? WHERE `id` = ?");
-        $stmt->bind_param("ssdds", $this->name, $this->brand, $this->price, $this->size, $this->size, $this->id);
+        $stmt = $db->conn->prepare("UPDATE `items` SET `name`= ?,`brand`= ?,`price`= ?, `size` = ?, `about` = ? WHERE `id` = ?");
+        $stmt->bind_param("ssddsi", $this->name, $this->brand, $this->price, $this->size, $this->about, $this->id);
         $stmt->execute();
-
         $stmt->close();
         $db->conn->close();
     }

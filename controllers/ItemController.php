@@ -18,6 +18,20 @@ class ItemController {
         return Item::find($id);
     }
 
+    public static function updateItem()
+    {
+        $item = New Item();
+        $item->id = $_POST['id'];
+        $item->name = $_POST['name'];
+        $item->brand = $_POST['brand'];
+        $item->price = $_POST['price'];
+        $item->size = $_POST['size'];
+        $item->about = $_POST['about'];
+        $item->update();
+    }
+
+
+
 
 
 }

@@ -26,6 +26,14 @@
             </div>
             <div class="col-4"></div>
         </div>
+        <form action="<?=$_USER_PATH.'/views/shop/edit.php'?>" method="get">
+            <input type="hidden" name="id" value="<?=$item->id?>">
+            <button type="submit" name="goToEdit" class="btn btn-success">Edit</button>
+        </form>
+        <form action="<?=$_USER_PATH.'/views/shop/showAll.php'?>" method="get">
+            <input type="hidden" name="id" value="<?=$item->id?>">
+            <button type="submit" name="delete" class="btn btn-success">Delete</button>
+        </form>
     </div>
 </body>
 </html>
