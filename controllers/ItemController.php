@@ -40,7 +40,17 @@ class ItemController {
         return Item::search();
     }
 
+    public static function getBrands()
+    {
+        $brands = Item::getBrands();
+        return $brands;
+    }
 
+    public static function filter()
+    {
+        $items = Item::filter();
+        return $items;
+    }
 
 
 

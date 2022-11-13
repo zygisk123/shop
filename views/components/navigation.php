@@ -60,7 +60,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse col-6" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse col-9" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="<?=$_USER_PATH."/views/shop/showAll.php"?>">SHOW SHOES</a>
@@ -70,7 +70,7 @@
             </li>   
           </ul>
         </div>
-        <div class="col-5">   
+        <div class="col-3">   
         <div class="dropdown">
           <button onclick="myFunction()" name = "search" class="dropbtn">Search</button>
           <div id="myDropdown" class="dropdown-content">
@@ -80,16 +80,9 @@
             <?php }?>
           </div>
         </div> 
-          <!-- <form class="d-flex" role="search" method='GET'>
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" name = "search" type="submit">Search</button>
-          </form> -->
     </div>
   </div>
 </nav>
-
-<!-- <script src=<?php$_ADMIN_PATH."/js/main.js"?>></script> -->
-
 
 <!-- ///////////////////////////////////////////////////////////////// -->
 

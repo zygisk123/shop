@@ -25,6 +25,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $searchItems = ItemController::search();
         $items = ItemController::getAll();
     }
+    if (isset($_GET['filterByBrand'])){
+        $_GET['filterByBrand'] = explode(",",$_GET['filterByBrand']);
+        if (isset($_GET['sortByPrice1-9'])) {
+            $_GET['sort'] = $_GET['sortByPrice1-9'];
+        }        
+        if (isset($_GET['sortByPrice9-1'])) {
+            $_GET['sort'] = $_GET['sortByPrice9-1'];
+        }
+        if (isset($_GET['sortByBrandA-Z'])) {
+            $_GET['sort'] = $_GET['sortByBrandA-Z'];
+        }
+        if (isset($_GET['sortByBrandZ-A'])) {
+            $_GET['sort'] = $_GET['sortByBrandZ-A'];
+        }
+        $items = ItemController::filter();
+
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -40,4 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
+
+
+$brands = ItemController::getBrands();
+$filterBrands = []; 
 ?>
