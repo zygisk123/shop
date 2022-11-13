@@ -134,6 +134,18 @@ class Item {
                             }
                         }
                     }
+                    // if (isset($_GET['userInputFrom'])){
+                    //     // echo $_GET['userInputFrom'];
+                    //     // die;
+                    //     $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $_GET['userInputFrom'] . " ";
+                    //     $first = false;
+                    //     $priceRangeAdded = true;
+                    // }
+                    // if (isset($_GET['userInputTo'])){
+                    //     $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $_GET['userInputTo'] . " ";
+                    //     $first = false;
+                    //     $priceRangeAdded = true;
+                    // }
                     if (isset($_GET["to"])) {
                         // echo  $_GET["to"];
                         // die;

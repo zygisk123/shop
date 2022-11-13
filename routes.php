@@ -26,19 +26,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $searchItems = ItemController::search();
         $items = ItemController::getAll();
     }
-    if (isset($_GET['userInputFrom'])) {
-        if ($_GET['userInputFrom'] != "") {
-            $_GET['from'] = $_GET['userInputFrom'];
-            $_GET['to'] =  $_GET['userInputTo'];
-        }
-    }
-    if (isset($_GET['userInputTo'])) {
-        if ($_GET['userInputTo'] != "") {
-            $_GET['to'] =  $_GET['userInputTo'];
-            $_GET['from'] = $_GET['userInputFrom'];
-            // die;
-        }
-    }
+    // if (isset($_GET['userInputFrom'])) {
+    //     if ($_GET['userInputFrom'] != "") {
+    //         $_GET['from'] = $_GET['userInputFrom'];
+    //         $_GET['to'] =  $_GET['userInputTo'];
+    //     }
+    // }
+    // if (isset($_GET['userInputTo'])) {
+    //     if ($_GET['userInputTo'] != "") {
+    //         $_GET['to'] =  $_GET['userInputTo'];
+    //         $_GET['from'] = $_GET['userInputFrom'];
+    //         // echo  $_GET["userInputTo"];
+    //         // die;
+    //         // die;
+    //     }
+    // }
     if (isset($_GET['filter'])){
         $_GET['filterByBrand'] = explode(",",$_GET['filterByBrand']);
         $items = ItemController::filter();
