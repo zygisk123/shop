@@ -31,6 +31,17 @@
                 <?php $price = $price+$i*$price; ?>
         <?php }?>
     </div>
+    <div class="row mt-2 mb-3">
+        <div class="col-5">
+            <input type="number" step= '0.01' class="form-control" name = "userInputFrom">
+        </div>
+        <div class="col-2">
+            <a>to</a>
+        </div>
+        <div class="col-5">
+            <input type="number" step= '0.01' class="form-control" name = "userInputTo">
+        </div>
+    </div>
     <div class="form-check" name='search'>
         <input type="hidden" name="from" value ="" id='valueFrom'>
         <input type="hidden" name="to" value ="" id="valueTo">
@@ -62,10 +73,7 @@
                 if(event.target.checked) {
                     checkBoxValue = document.getElementById(i).value;
                     selected[selectedID] = checkBoxValue;
-                    //string +=  checkBoxValue + ", ";
-                    //console.log("Checkbox checked! " + checkBoxValue);
                     selectedID++;
-                   // console.log(selected);
                    array = selected
                 }else{
                     checkBoxValue = document.getElementById(i).value;
@@ -73,7 +81,6 @@
                         if(checkBoxValue == selected[a]){
                             selected.splice(a, 1);
                             selectedID--;
-                        //    console.log(selected);
                             array = selected;
                         }
                         
@@ -87,20 +94,11 @@
     function getpriceFromTo() {
         inputFrom = document.getElementById('valueFrom');
         inputTo = document.getElementById('valueTo');
-        // from = 0;
-        // to = 0;
         for (let i = 1; i <= 3; i++) {
             checkBox = document.getElementById('flexRadio'+i).addEventListener('click', event => {
                 if(event.target.checked) {
                     valueFrom = parseInt(document.getElementById('flexRadio'+i).value);
                     valueTo = valueFrom + i * valueFrom;
-                    // from = valueFrom;
-                    // to = valueTo;
-                    // // inputFrom = parseInt(document.getElementById('valueFrom').value);
-                    // // inputTo = parseInt(document.getElementById('valueTo').value);
-                    // // inputFrom = valueFrom;
-                    // // inputTo = valueTo;
-                    // console.log(valueFrom+" "+valueTo);
                     inputFrom.value = valueFrom;
                     inputTo.value = valueTo;
                 }

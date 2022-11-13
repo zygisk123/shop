@@ -118,10 +118,18 @@ class Item {
             for ($i=0; $i < count($brandArray); $i++) { 
                 if ($i == 0 && $brandArray[$i] != "") {
                     $query .= " WHERE `brand` = '" . $brandArray[$i] . "'";
+                    $first = false;
                 }elseif ($brandArray[$i] != ""){
                     $query .= " OR `brand` = '" . $brandArray[$i] . "'";
                 }
             }
+        }
+        if ($_GET["from"] != "") {
+            $query .= (($first)? "WHERE" : "AND") . " `price` >= " . $_GET['from'] . " ";
+            $first = false;
+        }
+        if ($_GET["to"] != "") {
+            $query .= (($first)? "WHERE" : "AND") . " `price` <= " . $_GET['to'] . " ";
             $first = false;
         }
         switch ($_GET['sort']) {

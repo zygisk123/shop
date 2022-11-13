@@ -39,9 +39,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if (isset($_GET['sortByBrandZ-A'])) {
             $_GET['sort'] = $_GET['sortByBrandZ-A'];
         }
-        if ($_GET['from'] != "") {
-            echo $_GET['from'] . ' ' . $_GET['to'];
-            die;
+        // if ($_GET['from'] != "") {
+        //     // echo $_GET['from'] . ' ' . $_GET['to'];
+        //     // die;
+        // }
+        if (isset($_GET['userInputFrom'])) {
+            if ($_GET['userInputFrom'] != "") {
+                $_GET['from'] = $_GET['userInputFrom'];
+            }
+        }
+        if (isset($_GET['userInputTo'])) {
+            if ($_GET['userInputTo'] != "") {
+                $_GET['to'] =  $_GET['userInputTo'];
+            }
         }
         $items = ItemController::filter();
 
