@@ -37,13 +37,13 @@
     </div>
     <div class="row mt-2 mb-3">
         <div class="col-5">
-            <input type="number" step= '0.01' class="form-control" name = "userInputFrom" value="">
+            <input type="number" step= '0.01' class="form-control" name = "userInputFrom">
         </div>
         <div class="col-2">
             <a>to</a>
         </div>
         <div class="col-5">
-            <input type="number" step= '0.01' class="form-control" name = "userInputTo" value="">
+            <input type="number" step= '0.01' class="form-control" name = "userInputTo">
         </div>
     </div>
     <div class="form-check" name='search'>

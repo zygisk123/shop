@@ -120,6 +120,18 @@ class Item {
                 if ($i == 0 && $brandArray[$i] != "") {
                     $query .= " WHERE `brand` = '" . $brandArray[$i] . "'";
                     $first = false;
+                    if ($_GET['userInputFrom'] != ""){
+                        // echo $_GET['userInputFrom'];
+                        // die;
+                        $query .= (($first)? " WHERE " : " AND ") . " `price` >= " . $_GET['userInputFrom'] . " ";
+                        $first = false;
+                        $priceRangeAdded = true;
+                    }
+                    if ($_GET['userInputTo'] != ""){
+                        $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $_GET['userInputTo'] . " ";
+                        $first = false;
+                        $priceRangeAdded = true;
+                    }
                     if (isset($_GET["from"])) {
                         if ($_GET["from"] != "") {
                             $query .= (($first)? " WHERE " : " AND ") . " `price` >= " . $_GET['from'] . " ";
@@ -134,21 +146,7 @@ class Item {
                             }
                         }
                     }
-                    // if (isset($_GET['userInputFrom'])){
-                    //     // echo $_GET['userInputFrom'];
-                    //     // die;
-                    //     $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $_GET['userInputFrom'] . " ";
-                    //     $first = false;
-                    //     $priceRangeAdded = true;
-                    // }
-                    // if (isset($_GET['userInputTo'])){
-                    //     $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $_GET['userInputTo'] . " ";
-                    //     $first = false;
-                    //     $priceRangeAdded = true;
-                    // }
                     if (isset($_GET["to"])) {
-                        // echo  $_GET["to"];
-                        // die;
                         if ($_GET["to"] != "") {
                             $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $_GET['to'] . " ";
                             $first = false;
@@ -162,6 +160,18 @@ class Item {
                     }
                 }elseif ($brandArray[$i] != ""){
                     $query .= " OR `brand` = '" . $brandArray[$i] . "'";
+                    if ($_GET['userInputFrom'] != ""){
+                        // echo $_GET['userInputFrom'];
+                        // die;
+                        $query .= (($first)? " WHERE " : " AND ") . " `price` >= " . $_GET['userInputFrom'] . " ";
+                        $first = false;
+                        $priceRangeAdded = true;
+                    }
+                    if ($_GET['userInputTo'] != ""){
+                        $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $_GET['userInputTo'] . " ";
+                        $first = false;
+                        $priceRangeAdded = true;
+                    }
                     if (isset($_GET["from"])) {
                         if ($_GET["from"] != "") {
                             $query .= (($first)? " WHERE " : " AND ") . " `price` >= " . $_GET['from'] . " ";
@@ -192,6 +202,18 @@ class Item {
             }
         }
         if (!$priceRangeAdded) {
+            if ($_GET['userInputFrom'] != ""){
+                // echo $_GET['userInputFrom'];
+                // die;
+                $query .= (($first)? " WHERE " : " AND ") . " `price` >= " . $_GET['userInputFrom'] . " ";
+                $first = false;
+                $priceRangeAdded = true;
+            }
+            if ($_GET['userInputTo'] != ""){
+                $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $_GET['userInputTo'] . " ";
+                $first = false;
+                $priceRangeAdded = true;
+            }
             if (isset($_GET["from"])) {
                 if ($_GET["from"] != "") {
                     $query .= (($first)? " WHERE " : " AND ") . " `price` >= " . $_GET['from'] . " ";
