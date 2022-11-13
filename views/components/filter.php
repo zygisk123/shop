@@ -1,6 +1,7 @@
 
 <form action="" method="get">
     <div class="form-check">
+        <h6 class = "mt-3 mb-1" >Brand</h6>
         <?php foreach ($brands as  $key => $brand) {?>
             <input value="<?= $brand?>" class="form-check-input" type="checkbox" name="<?= $key?>" id="<?= $key?>">
             <?php echo $brand .'<br>';?>
@@ -21,7 +22,18 @@
         <label for="nameZ-A"> Brand (Z To A)</label><br>
 
     </div>
+    <div class="form-check">
+        <h6 class = "mt-3 mb-1" >Price</h6>
+        <?php $price = 10; 
+            for ($i=1; $i <= 3; $i++) { ?>
+                <input value="<?=$price?>" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadio<?=$i?>">
+                <label for="<?=$i?>"> <?=$price.' to '.$price+$i*$price." eur."?></label><br>
+                <?php $price = $price+$i*$price; ?>
+        <?php }?>
+    </div>
     <div class="form-check" name='search'>
+        <input type="hidden" name="from" value ="" id='valueFrom'>
+        <input type="hidden" name="to" value ="" id="valueTo">
         <input type="hidden" id="brandsLength" value = "<?=count($brands)?>">
         <input type="hidden" name="filterByBrand" id="brandsArray" value = "<?=""?>">
         <input type="hidden" name="sort" value = "">
@@ -71,9 +83,29 @@
             });
         }
     }
-
-    function name(params) {
-        
+    getpriceFromTo();
+    function getpriceFromTo() {
+        inputFrom = document.getElementById('valueFrom');
+        inputTo = document.getElementById('valueTo');
+        // from = 0;
+        // to = 0;
+        for (let i = 1; i <= 3; i++) {
+            checkBox = document.getElementById('flexRadio'+i).addEventListener('click', event => {
+                if(event.target.checked) {
+                    valueFrom = parseInt(document.getElementById('flexRadio'+i).value);
+                    valueTo = valueFrom + i * valueFrom;
+                    // from = valueFrom;
+                    // to = valueTo;
+                    // // inputFrom = parseInt(document.getElementById('valueFrom').value);
+                    // // inputTo = parseInt(document.getElementById('valueTo').value);
+                    // // inputFrom = valueFrom;
+                    // // inputTo = valueTo;
+                    // console.log(valueFrom+" "+valueTo);
+                    inputFrom.value = valueFrom;
+                    inputTo.value = valueTo;
+                }
+            });
+        }
     }
 </script>
 

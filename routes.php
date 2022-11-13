@@ -39,6 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if (isset($_GET['sortByBrandZ-A'])) {
             $_GET['sort'] = $_GET['sortByBrandZ-A'];
         }
+        if ($_GET['from'] != "") {
+            echo $_GET['from'] . ' ' . $_GET['to'];
+            die;
+        }
         $items = ItemController::filter();
 
     }
