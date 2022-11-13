@@ -113,42 +113,122 @@ class Item {
         $db = new DB();
         $query = "SELECT * FROM `items`";
         $first = true;
+        $priceRangeAdded = false;
         if ($_GET['filterByBrand'] != "") {
             $brandArray = $_GET['filterByBrand'];
             for ($i=0; $i < count($brandArray); $i++) { 
                 if ($i == 0 && $brandArray[$i] != "") {
                     $query .= " WHERE `brand` = '" . $brandArray[$i] . "'";
                     $first = false;
+                    if (isset($_GET["from"])) {
+                        if ($_GET["from"] != "") {
+                            $query .= (($first)? " WHERE " : " AND ") . " `price` >= " . $_GET['from'] . " ";
+                            $first = false;
+                            $priceRangeAdded = true;
+                            if (!isset($_GET["to"])) {
+                                $priceTo = $_GET["from"] + $_GET["from"] * 1.5;
+                                $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $priceTo . " ";
+                                $first = false;
+                                $priceRangeAdded = true;
+                                
+                            }
+                        }
+                    }
+                    if (isset($_GET["to"])) {
+                        // echo  $_GET["to"];
+                        // die;
+                        if ($_GET["to"] != "") {
+                            $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $_GET['to'] . " ";
+                            $first = false;
+                            $priceRangeAdded = true;
+                        }else{
+                            $priceTo = $_GET["from"] + $_GET["from"] * 1.5;
+                            $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $priceTo . " ";
+                            $first = false;
+                            $priceRangeAdded = true;
+                        }
+                    }
                 }elseif ($brandArray[$i] != ""){
                     $query .= " OR `brand` = '" . $brandArray[$i] . "'";
+                    if (isset($_GET["from"])) {
+                        if ($_GET["from"] != "") {
+                            $query .= (($first)? " WHERE " : " AND ") . " `price` >= " . $_GET['from'] . " ";
+                            $first = false;
+                            $priceRangeAdded = true;
+                            if (!isset($_GET["to"])) {
+                                $priceTo = $_GET["from"] + $_GET["from"] * 1.5;
+                                $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $priceTo . " ";
+                                $first = false;
+                                $priceRangeAdded = true;
+                                
+                            }
+                        }
+                    }
+                    if (isset($_GET["to"])) {
+                        if ($_GET["to"] != "") {
+                            $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $_GET['to'] . " ";
+                            $first = false;
+                            $priceRangeAdded = true;
+                        }else{
+                            $priceTo = $_GET["from"] + $_GET["from"] * 1.5;
+                            $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $priceTo . " ";
+                            $first = false;
+                            $priceRangeAdded = true;
+                        }
+                    }
                 }
             }
         }
-        if ($_GET["from"] != "") {
-            $query .= (($first)? "WHERE" : "AND") . " `price` >= " . $_GET['from'] . " ";
-            $first = false;
+        if (!$priceRangeAdded) {
+            if (isset($_GET["from"])) {
+                if ($_GET["from"] != "") {
+                    $query .= (($first)? " WHERE " : " AND ") . " `price` >= " . $_GET['from'] . " ";
+                    $first = false;
+                    $priceRangeAdded = true;
+                    if (!isset($_GET["to"])) {
+                        $priceTo = $_GET["from"] + $_GET["from"] * 1.5;
+                        $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $priceTo . " ";
+                        $first = false;
+                        $priceRangeAdded = true;
+                        
+                    }
+                }
+            }
+            if (isset($_GET["to"])) {
+                if ($_GET["to"] != "") {
+                    $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $_GET['to'] . " ";
+                    $first = false;
+                    $priceRangeAdded = true;
+                }else{
+                    $priceTo = $_GET["from"] + $_GET["from"] * 1.5;
+                    $query .= (($first)? " WHERE " : " AND ") . " `price` <= " . $priceTo . " ";
+                    $first = false;
+                    $priceRangeAdded = true;
+                }
+            }
         }
-        if ($_GET["to"] != "") {
-            $query .= (($first)? "WHERE" : "AND") . " `price` <= " . $_GET['to'] . " ";
-            $first = false;
+        if (isset($_GET['sort'])) {
+            if ($_GET['sort'] != "") {
+                switch ($_GET['sort']) {
+                    case '1':
+                        $query .= " ORDER by `price`";
+                        break;
+                    case '2':
+                        $query .= " ORDER by `price` DESC";
+                        break;
+                    case '3':
+                        $query .= " ORDER by `name`";
+                        break;
+                    case '4':
+                        $query .= " ORDER by `name` DESC";
+                        break;
+                    
+                }
+    
+            }
+
         }
-        switch ($_GET['sort']) {
-            case '1':
-                $query .= " ORDER by `price`";
-                break;
-            case '2':
-                $query .= " ORDER by `price` DESC";
-                break;
-            case '3':
-                $query .= " ORDER by `name`";
-                break;
-            case '4':
-                $query .= " ORDER by `name` DESC";
-                break;
-            
-        }
-        // echo $query;
-        // die;
+        echo $query;
         $result = $db->conn->query($query);
 
         while ($row = $result->fetch_assoc()) {

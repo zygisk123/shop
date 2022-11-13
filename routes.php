@@ -4,6 +4,7 @@ include $_ADMIN_PATH."/controllers/ItemController.php";
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
     if (count($_GET) == 0) {
         $items = ItemController::getAll();
     }
@@ -25,19 +26,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $searchItems = ItemController::search();
         $items = ItemController::getAll();
     }
-    if (isset($_GET['filterByBrand'])){
+    if (isset($_GET['userInputFrom'])) {
+        if ($_GET['userInputFrom'] != "") {
+            $_GET['from'] = $_GET['userInputFrom'];
+            $_GET['to'] =  $_GET['userInputTo'];
+        }
+    }
+    if (isset($_GET['userInputTo'])) {
+        if ($_GET['userInputTo'] != "") {
+            $_GET['to'] =  $_GET['userInputTo'];
+            $_GET['from'] = $_GET['userInputFrom'];
+            // die;
+        }
+    }
+    if (isset($_GET['filter'])){
         $_GET['filterByBrand'] = explode(",",$_GET['filterByBrand']);
-        if (isset($_GET['userInputFrom'])) {
-            if ($_GET['userInputFrom'] != "") {
-                $_GET['from'] = $_GET['userInputFrom'];
-            }
-        }
-        if (isset($_GET['userInputTo'])) {
-            if ($_GET['userInputTo'] != "") {
-                $_GET['to'] =  $_GET['userInputTo'];
-                // die;
-            }
-        }
         $items = ItemController::filter();
         
 
