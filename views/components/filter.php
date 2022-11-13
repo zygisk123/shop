@@ -9,17 +9,17 @@
     </div>
     <div class="form-check">
         <h6 class = "mt-3 mb-1" >Sort By</h6>
-        <input value="1" class="form-check-input" type="checkbox" id = "price1-9" name="sortByPrice1-9">
-        <label for="price1-9"> Price (Low To High)</label><br>
+        <input value="1" class="form-check-input" type="radio" id = "sort1" name="flexRadioDefault">
+        <label for="sort1"> Price (Low To High)</label><br>
 
-        <input value="2" class="form-check-input" type="checkbox" id = "price9-1" name="sortByPrice9-1">
-        <label for="price9-1"> Price (High To Low)</label><br>
+        <input value="2" class="form-check-input" type="radio" id = "sort2" name="flexRadioDefault">
+        <label for="sort2"> Price (High To Low)</label><br>
 
-        <input value="3" class="form-check-input" type="checkbox" id = "nameA-Z" name="sortByBrandA-Z">
-        <label for="nameA-Z"> Brand (A To Z)</label><br>
+        <input value="3" class="form-check-input" type="radio" id = "sort3" name="flexRadioDefault">
+        <label for="sort3"> Brand (A To Z)</label><br>
 
-        <input value="4" class="form-check-input" type="checkbox" id = "nameZ-A" name="sortByBrandZ-A">
-        <label for="nameZ-A"> Brand (Z To A)</label><br>
+        <input value="4" class="form-check-input" type="radio" id = "sort4" name="flexRadioDefault">
+        <label for="sort4"> Brand (Z To A)</label><br>
 
     </div>
     <div class="form-check">
@@ -27,7 +27,7 @@
         <?php $price = 10; 
             for ($i=1; $i <= 3; $i++) { ?>
                 <input value="<?=$price?>" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadio<?=$i?>">
-                <label for="<?=$i?>"> <?=$price.' to '.$price+$i*$price." eur."?></label><br>
+                <label for="flexRadio<?=$i?>"> <?=$price.' to '.$price+$i*$price." eur."?></label><br>
                 <?php $price = $price+$i*$price; ?>
         <?php }?>
     </div>
@@ -47,7 +47,7 @@
         <input type="hidden" name="to" value ="" id="valueTo">
         <input type="hidden" id="brandsLength" value = "<?=count($brands)?>">
         <input type="hidden" name="filterByBrand" id="brandsArray" value = "<?=""?>">
-        <input type="hidden" name="sort" value = "">
+        <input type="hidden" name="sort" id="sort" value ="">
         <button type="submit" name='filter' class = 'btn btn-primary'>Filter</button>
     </div>
 </form>
@@ -101,6 +101,19 @@
                     valueTo = valueFrom + i * valueFrom;
                     inputFrom.value = valueFrom;
                     inputTo.value = valueTo;
+                }
+            });
+        }
+    }
+    getSortValue();
+    function getSortValue() {
+        sort = document.getElementById('sort');
+        for (let i = 1; i <= 4; i++) {
+            checkBox = document.getElementById('sort'+i).addEventListener('click', event => {
+                if(event.target.checked) {
+                    checkboxValue = document.getElementById('sort'+i).value;
+                    console.log(checkboxValue);
+                    sort.value = checkboxValue;
                 }
             });
         }
