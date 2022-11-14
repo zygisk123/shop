@@ -15,8 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $items = ItemController::getAll();
     }    
     if (isset($_GET['goToEdit'])){
-        $item = ItemController::showItem($_GET['id']);
-        $items = ItemController::getAll();
+        $item = ItemController::showItem($_GET['showItemID']);
     }
     if (isset($_GET['delete'])){
         $item = ItemController::deleteItem($_GET['id']);
@@ -29,7 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $items = ItemController::getAll();
     }
     if (isset($_GET['filter'])){
-        $items = ItemController::getAll();
+        $_GET['filterByBrand'] = explode(",",$_GET['filterByBrand']);
+        // print_r($_GET["filterByBrand"]);
+        $items = ItemController::filter();
     }
 }
 
@@ -47,6 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $shoesBrands = ItemBrandController::getAll();
-print_r($shoesBrands);
-echo (count($shoesBrands));
+// print_r($shoesBrands);
+// echo (count($shoesBrands));
 ?>

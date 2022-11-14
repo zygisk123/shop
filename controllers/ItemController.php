@@ -46,11 +46,11 @@ class ItemController {
     //     return $brands;
     // }
 
-    // public static function filter()
-    // {
-    //     $items = Item::filter();
-    //     return $items;
-    // }
+    public static function filter()
+    {
+        $items = Item::filter();
+        return $items;
+    }
 
 
 

@@ -14,7 +14,7 @@
                         <?=$showItem->price." eur"?>
                     </h1>
                     <h3>
-                        <?="Size: ".$item->size?>
+                        <?="Size: ".$showItem->size?>
                     </h3>
                 </div>
                 <div class="name">
@@ -26,7 +26,7 @@
                 <div class="row mt-3">
                     <div class="col-6">
                         <form action="<?=$_USER_PATH.'/views/shop/edit.php'?>" method="get">
-                            <input type="hidden" name="id" value="<?=$showItem->id?>">
+                            <input type="hidden" name="showItemID" value="<?=$showItem->id?>">
                             <button type="submit" name="goToEdit" class="btn btn-primary">Edit</button>
                         </form>
                     </div>

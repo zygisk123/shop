@@ -69,7 +69,9 @@ class Item {
         $db = new DB();
         $stmt = $db->conn->prepare("UPDATE `items` SET `name`= ?,`price`= ?, `size` = ?, `about` = ?, `brand_id` = ? WHERE `id` = ?");
         $stmt->bind_param("sddsii", $this->name, $this->price, $this->size, $this->about, $this->brandID, $this->id);
-        $stmt->execute();
+        if(!$stmt->execute()) {
+            print_r( $stmt->error_list);
+        }        
         $stmt->close();
         $db->conn->close();
     }
@@ -97,6 +99,22 @@ class Item {
         $db->conn->close();
         return $items;
 
+    }
+
+    public static function filter()
+    {
+        $items = [];
+        $db = new DB();
+        $query = "SELECT * FROM `items` `i` join `shoe_brands` `sb` on `sb`.`id` = `i`.`brand_id`";
+        $first = true;
+        $filterByBrandArr = $_GET['filterByBrand'];
+        if (count($filterByBrandArr) > 0 && $filterByBrandArr[0] != "") {
+            for ($i=0; $i < count($_GET['filterByBrand']); $i++) { 
+                $query .= (($first)? " WHERE " : " OR ") . " `brandName` = '" . $filterByBrandArr[$i] . "'";
+                $first = false;
+            }
+            echo $query;
+        }
     }
     // public static function getBrands()
     // {
