@@ -1,11 +1,11 @@
 <?php
 
-include $_ADMIN_PATH."/models/Item.php";
-class ItemController {
+include $_ADMIN_PATH."/models/Brand.php";
+class ItemBrandController {
 
     public static function getAll()
     {
-        return Item::all();
+        return Brand::all();
     }
 
     public static function addItem()

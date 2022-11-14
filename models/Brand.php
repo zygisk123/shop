@@ -1,50 +1,34 @@
 <?php
 
-include $_ADMIN_PATH.('/models/DB.php');
-
-class Item {
+class Brand {
     public $id;
     public $name;
-    public $price;
-    public $size;
-    public $about;
-    public $brandID;
-    public $brand;
 
-
-
-    public function __construct($id = null, $name = null, $price = null, $size = null, $about = null, $brandID = null, $brand = null)
+    public function __construct($id = null, $name = null)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->price = $price;
-        $this->size = $size;
-        $this->about = $about;
-        $this->brandID = $brandID;
-        $this->brand = $brand;
-
-
     }
 
     public static function all()
     {
-        $items = [];
+        $brands = [];
         $db = new DB();
-        $query = "SELECT `i`.`id`, `i`.`name`, `i`.`price`, `i`.`size`, `i`.`about`, `i`.`brand_id`, `sb`.`brandName` FROM `items` `i` join `shoe_brands` `sb` on `sb`.`id` = `i`.`brand_id`";
+        $query = "SELECT * FROM `shoe_brands`";
         $result = $db->conn->query($query);
 
         while ($row = $result->fetch_assoc()) {
-            $items[] = new Item($row['id'], $row['name'], $row['price'], $row['size'], $row['about'], $row['brand_id'], $row['brandName']);
+            $brands[] = new Brand($row['id'], $row['brandName']);
         }
         $db->conn->close();
-        return $items;
+        return $brands;
     }
 
     public static function create()
     {
         $db = new DB();
-        $stmt = $db->conn->prepare("INSERT INTO `items`( `name`, `price`, `size`, `about`, `brand_id`) VALUES (?,?,?,?,?)");
-        $stmt->bind_param("sddsi", $_POST['name'], $_POST['price'], $_POST['size'], $_POST['about'], $_POST['shoeBrand']);
+        $stmt = $db->conn->prepare("INSERT INTO `items`( `name`, `price`, `size`, `about`) VALUES (?,?,?,?)");
+        $stmt->bind_param("sdds", $_POST['name'], $_POST['price'], $_POST['size'], $_POST['about']);
         $stmt->execute();
 
         $stmt->close();
@@ -55,11 +39,10 @@ class Item {
     {
         $item = new Item();
         $db = new DB();
-        $query = "SELECT `i`.`id`, `i`.`name`, `i`.`price`, `i`.`size`, `i`.`about`, `sb`.`brandName` FROM `items` `i` JOIN `shoe_brands` `sb` ON `sb`.`id` = `i`.`brand_id` WHERE `i`.`id` = " . $id;
-        echo $query;
+        $query = "SELECT * FROM `items` WHERE `id` = " . $id;
         $result = $db->conn->query($query);
         while ($row = $result->fetch_assoc()) {
-            $item = new Item($row['id'], $row['name'], $row['price'], $row['size'], $row['about'], $row['brandName']);
+            $item = new Item($row['id'], $row['name'], $row['price'], $row['size'], $row['about']);
         }
         $db->conn->close();
         return $item;

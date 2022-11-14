@@ -5,8 +5,9 @@
 
     <div class="container">
         <div class="row">
-            <!-- <div class="col-2">
-            </div> -->
+            <div class="col-2">
+                <?php// include $_ADMIN_PATH . "/views/components/filter.php"; ?>
+            </div>
             <div class="col-10">
                 <div class="row">
 
@@ -16,9 +17,9 @@
                                 <div class="itemName">
                                     <?php echo $item->name;?>
                                 </div>
-                                <div class="itemBrand">
-                                    <?php echo $item->brand;?>
-                                </div>
+                                <!-- <div class="itemBrand">
+                                    <?php //echo $item->brand;?>
+                                </div> -->
                                 <div class="itemPrice">
                                     <?php echo $item->price;?>
                                 </div>

@@ -11,10 +11,12 @@
                         <label for="itemName" class="form-label">Name</label>
                         <input type="text" class="form-control" name = "name" id="itemName">
                     </div>
-                    <div class="mb-3">
-                        <label for="itemBrand" class="form-label">Brand</label>
-                        <input type="text" class="form-control" name = "brand" id="itemBrand">
-                    </div>                    
+                    <select class="form-select" name="shoeBrand">
+                        <option value="">All</option>
+                        <?php foreach ($shoesBrands as $key => $sb) {?>
+                            <option value="<?=$sb->id?>"><?=$sb->name?></option>
+                        <?php } ?>  
+                    </select>
                     <div class="price">
                         <label for="itemPrice" class="form-label">Price</label>
                         <input type="number" name = "price"  step= '0.01' class="form-control" id="itemPrice">

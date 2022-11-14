@@ -57,32 +57,12 @@
 </form>
 
 
-
-
 <script>
 
     brandsLengthElement = document.getElementById('brandsLength')
     brandsLength = brandsLengthElement.value;
 
     selectedBrands = getArrayOfSelBrands(brandsLength);
-
-    // function getArrayOfSelBrands(length) {
-    //     selected = [];
-    //     array = [];
-    //     selectedID = 0;
-    //     brandsArray = document.getElementById("brandsArray")
-    //     for (let i = 0; i < length; i++) {
-    //         cb = document.getElementById(i);
-    //         if (cb.checked) {
-    //             selected[selectedID] = cb.value;
-    //             selectedID++;
-    //         }
-    //         if (i == length-1) {
-    //             console.log(selected);
-    //             brandsArray.value = selected;
-    //         }
-    //     }
-    // }
 
     function getArrayOfSelBrands(length) {
         selected = [];
@@ -123,45 +103,4 @@
             }
         }
     }
-
-
-
-
-
-
-
-
-
-    // getpriceFromTo();
-    // function getpriceFromTo() {
-    //     inputFrom = document.getElementById('valueFrom');
-    //     inputTo = document.getElementById('valueTo');
-    //     for (let i = 1; i <= 3; i++) {
-    //         checkBox = document.getElementById('flexRadio'+i).addEventListener('click', event => {
-    //             if(event.target.checked) {
-    //                 valueFrom = parseInt(document.getElementById('flexRadio'+i).value);
-    //                 valueTo = valueFrom + i * valueFrom;
-    //                 inputFrom.value = valueFrom;
-    //                 inputTo.value = valueTo;
-
-    //             }
-    //         });
-    //         if (document.getElementById('flexRadio'+i).checked) {
-    //             document.getElementById('flexRadio'+i).checked = false;
-    //         }
-    //     }
-    // }
-    // getSortValue();
-    // function getSortValue() {
-    //     sort = document.getElementById('sort');
-    //     for (let i = 1; i <= 4; i++) {
-    //         checkBox = document.getElementById('sort'+i).addEventListener('click', event => {
-    //             if(event.target.checked) {
-    //                 checkboxValue = document.getElementById('sort'+i).value;
-    //                 console.log(checkboxValue);
-    //                 sort.value = checkboxValue;
-    //             }
-    //         });
-    //     }
-    // }
 </script>
