@@ -11,7 +11,8 @@
                         <label for="itemName" class="form-label">Name</label>
                         <input type="text" class="form-control" name = "name" id="itemName">
                     </div>
-                    <select class="form-select" name="shoeBrand">
+                    <label for="brand" class="form-label">Brand</label>
+                    <select class="form-select" name="shoeBrand" id="brand">
                         <option value="">All</option>
                         <?php foreach ($shoesBrands as $key => $sb) {?>
                             <option value="<?=$sb->id?>"><?=$sb->name?></option>

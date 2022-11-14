@@ -23,10 +23,10 @@ class ItemController {
         $item = New Item();
         $item->id = $_POST['id'];
         $item->name = $_POST['name'];
-        // $item->brand = $_POST['brand'];
         $item->price = $_POST['price'];
         $item->size = $_POST['size'];
         $item->about = $_POST['about'];
+        $item->brandID = $_POST['brand'];
         $item->update();
     }
 

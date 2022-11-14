@@ -68,8 +68,8 @@ class Item {
     public function update()
     {
         $db = new DB();
-        $stmt = $db->conn->prepare("UPDATE `items` SET `name`= ?,`price`= ?, `size` = ?, `about` = ? WHERE `id` = ?");
-        $stmt->bind_param("sddsi", $this->name, $this->price, $this->size, $this->about, $this->id);
+        $stmt = $db->conn->prepare("UPDATE `items` SET `name`= ?,`price`= ?, `size` = ?, `about` = ?, `brand_id` = ? WHERE `id` = ?");
+        $stmt->bind_param("sddsii", $this->name, $this->price, $this->size, $this->about, $this->brandID, $this->id);
         $stmt->execute();
         $stmt->close();
         $db->conn->close();
