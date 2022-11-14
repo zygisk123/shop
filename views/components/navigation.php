@@ -67,7 +67,13 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?=$_USER_PATH."/views/shop/add.php"?>">ADD NEW SHOES</a>
-            </li>   
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?=$_USER_PATH."/views/brand/add.php"?>">ADD NEW Brand</a>
+            </li> 
+            <li class="nav-item">
+                <a class="nav-link" href="<?=$_USER_PATH."/views/brand/showAll.php"?>">SHOW ALL BRANDS</a>
+            </li>        
           </ul>
         </div>
         <div class="col-3">   

@@ -11,17 +11,11 @@
             <div class="col-10">
                 <div class="row">
 
-                    <?php foreach($items as $item){ ?>
+                    <?php foreach($brands as $brand){ ?>
                         <div class="item d-inline col-3 mt-3 mb-3">
-                            <a href = <?=$_USER_PATH."/views/shop/show.php?itemID=".$item->id?>>
-                                <div class="itemName">
-                                    <?php echo $item->name;?>
-                                </div>
-                                <!-- <div class="itemBrand">
-                                    <?php //echo $item->brand;?>
-                                </div> -->
-                                <div class="itemPrice">
-                                    <?php echo $item->price;?>
+                            <a href = <?=$_USER_PATH."/views/brand/show.php?brand=".$brand->id?>>
+                                <div class="brandName">
+                                    <?php echo $brand->name;?>
                                 </div>
                             </a>
                         </div>
