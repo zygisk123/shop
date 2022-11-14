@@ -76,20 +76,15 @@
 
             checkBox = document.getElementById(i).addEventListener('click', event => {
                 if(event.target.checked) {
-                    checkBoxValue = document.getElementById(i).value;
+                    checkBoxValue = "`"+document.getElementById(i).value+"`";
                     selected[selectedID] = checkBoxValue;
                     selectedID++;
                    array = selected
                 }else{
                     checkBoxValue = document.getElementById(i).value;
-                    for (let a = 0; a < selected.length; a++) {
-                        if(checkBoxValue == selected[a]){
-                            selected.splice(a, 1);
-                            selectedID--;
-                            array = selected;
-                        }
-                        
-                    }
+                    selected.splice(i, 1);
+                    selectedID--;
+                    array = selected;
                 }
                 console.log(array);
                 brandsArray.value = array;
@@ -105,4 +100,5 @@
             }
         }
     }
+
 </script>

@@ -107,14 +107,10 @@ class Item {
         $db = new DB();
         $query = "SELECT * FROM `items` `i` join `shoe_brands` `sb` on `sb`.`id` = `i`.`brand_id`";
         $first = true;
+        $BrandsList = $_GET['filterByBrand'];
+        $query .= "WHERE `brandName` in (" . ($BrandsList). ")";
         $filterByBrandArr = $_GET['filterByBrand'];
-        if (count($filterByBrandArr) > 0 && $filterByBrandArr[0] != "") {
-            for ($i=0; $i < count($_GET['filterByBrand']); $i++) { 
-                $query .= (($first)? " WHERE " : " OR ") . " `brandName` = '" . $filterByBrandArr[$i] . "'";
-                $first = false;
-            }
-            echo $query;
-        }
+        echo $query;
     }
     // public static function getBrands()
     // {
