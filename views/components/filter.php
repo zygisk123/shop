@@ -66,9 +66,21 @@
 
     selectedBrands = getArrayOfSelBrands(brandsLength);
 
+        function fix(array) {
+            for (let i = 0; i < 4; i++) {
+                cb = document.getElementById(i);
+                if (cb.checked) {
+                array[selectedID] = cb.value;
+                selectedID++;
+                }
+                
+            }
+        }
+
     function getArrayOfSelBrands(length) {
         selected = [];
         array = [];
+        arrayID = [];
         selectedID = 0;
         string = "";
         brandsArray = document.getElementById("brandsArray")
@@ -78,13 +90,15 @@
                 if(event.target.checked) {
                     checkBoxValue = "`"+document.getElementById(i).value+"`";
                     selected[selectedID] = checkBoxValue;
+                    arrayID[selectedID] = i;
                     selectedID++;
                    array = selected
                 }else{
-                    checkBoxValue = document.getElementById(i).value;
-                    selected.splice(i, 1);
-                    selectedID--;
-                    array = selected;
+                    for (let a = 0; a < selectedID; a++) {
+                        selected.splice(arrayID[i], 1);
+                        selectedID--;
+                        array = selected;                   
+                    }
                 }
                 console.log(array);
                 brandsArray.value = array;
@@ -94,11 +108,11 @@
                 selected[selectedID] = cb.value;
                 selectedID++;
             }
-            if (i == length-1) {
-                console.log(selected);
-                brandsArray.value = selected;
-            }
+            // if (i == length-1) {
+            // }
         }
+        console.log(selected);
+        brandsArray.value = selected;
     }
 
 </script>

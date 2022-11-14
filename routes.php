@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['filter'])){
         // $_GET['filterByBrand'] = explode(",",$_GET['filterByBrand']);
         // // print_r($_GET["filterByBrand"]);
-       echo ($_GET['filterByBrand']);
+       //echo ($_GET['filterByBrand']);
        
         $items = ItemController::filter();
     }

@@ -109,8 +109,14 @@ class Item {
         $first = true;
         $BrandsList = $_GET['filterByBrand'];
         $query .= "WHERE `brandName` in (" . ($BrandsList). ")";
-        $filterByBrandArr = $_GET['filterByBrand'];
         echo $query;
+        $result = $db->conn->query($query);
+
+        while ($row = $result->fetch_assoc()) {
+            $items[] = new Item($row['id'], $row['name'], $row['price'], $row['size'], $row['about'], $row['brand_id'], $row['brandName']);
+        }
+        $db->conn->close();
+        return $items;
     }
     // public static function getBrands()
     // {
