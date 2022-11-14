@@ -56,7 +56,6 @@ class Item {
         $item = new Item();
         $db = new DB();
         $query = "SELECT `i`.`id`, `i`.`name`, `i`.`price`, `i`.`size`, `i`.`about`, `sb`.`brandName` FROM `items` `i` JOIN `shoe_brands` `sb` ON `sb`.`id` = `i`.`brand_id` WHERE `i`.`id` = " . $id;
-        echo $query;
         $result = $db->conn->query($query);
         while ($row = $result->fetch_assoc()) {
             $item = new Item($row['id'], $row['name'], $row['price'], $row['size'], $row['about'], $row['brandName']);

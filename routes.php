@@ -28,6 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $searchItems = ItemController::search();
         $items = ItemController::getAll();
     }
+    if (isset($_GET['filter'])){
+        $items = ItemController::getAll();
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -44,4 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $shoesBrands = ItemBrandController::getAll();
+print_r($shoesBrands);
+echo (count($shoesBrands));
 ?>

@@ -5,11 +5,11 @@
 
     <div class="container">
         <div class="row">
-            <!-- <div class="col-2">
-            </div> -->
+            <div class="col-2">
+                <?php include $_ADMIN_PATH . "/views/components/filter.php"; ?>
+            </div>
             <div class="col-10">
                 <div class="row">
-
                     <?php foreach($items as $item){ ?>
                         <div class="item d-inline col-3 mt-3 mb-3">
                             <a href = <?=$_USER_PATH."/views/shop/show.php?itemID=".$item->id?>>

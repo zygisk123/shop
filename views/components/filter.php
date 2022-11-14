@@ -1,9 +1,11 @@
 <form action="" method="get">
     <div class="form-check">
         <h6 class = "mt-3 mb-1" >Brand</h6>
-        <?php foreach ($brands as  $key => $brand) {?>
-            <input <?=(isset($_GET[$key]))?($_GET[$key] == $brand) ? "checked" : '':'';?> value="<?= $brand?>" class="form-check-input" type="checkbox" name="<?= $key?>" id="<?= $key?>">
-            <?php echo $brand .'<br>';?>
+        <?php foreach ($shoesBrands as  $key => $brand) {?>
+            <input <?=(isset($_GET["sortByBrand".$brand->id]))?($_GET["sortByBrand".$brand->id] == $brand->name) ? "checked" : '':'';?> class="form-check-input" type="checkbox" value="<?= $brand->name?>" name=<?="sortByBrand".$brand->id?> id="<?=$key?>">
+            <?php
+                echo $brand->id . " " .$brand->name . "<br>";
+            ?>
         <?php } ?>
     </div>
     <div class="form-check2">
@@ -14,13 +16,13 @@
         <input <?=(isset($_GET["sort"]))?($_GET["sort"] == 1) ? "checked" : '':'';?> value="1" class="form-check-input" type="radio" id = "sort1" name="sort">
         <label for="sort1"> Price (Low To High)</label><br>
 
-        <input <?=(isset($_GET["sort"]))?($_GET["sort"] == 2) ? "checked" : '':'';?>value="2" class="form-check-input" type="radio" id = "sort2" name="sort">
+        <input <?=(isset($_GET["sort"]))?($_GET["sort"] == 2) ? "checked" : '':'';?> value="2" class="form-check-input" type="radio" id = "sort2" name="sort">
         <label for="sort2"> Price (High To Low)</label><br>
 
-        <input <?=(isset($_GET["sort"]))?($_GET["sort"] == 3) ? "checked" : '':'';?>value="3" class="form-check-input" type="radio" id = "sort3" name="sort">
+        <input <?=(isset($_GET["sort"]))?($_GET["sort"] == 3) ? "checked" : '':'';?> value="3" class="form-check-input" type="radio" id = "sort3" name="sort">
         <label for="sort3"> Brand (A To Z)</label><br>
 
-        <input <?=(isset($_GET["sort"]))?($_GET["sort"] == 4) ? "checked" : '':'';?>value="4" class="form-check-input" type="radio" id = "sort4" name="sort">
+        <input <?=(isset($_GET["sort"]))?($_GET["sort"] == 4) ? "checked" : '':'';?> value="4" class="form-check-input" type="radio" id = "sort4" name="sort">
         <label for="sort4"> Brand (Z To A)</label><br>
 
     </div>
@@ -49,7 +51,7 @@
     <div class="form-check" name='search'>
         <!-- <input type="hidden" name="from" value ="" id='valueFrom'>
         <input type="hidden" name="to" value ="" id="valueTo"> -->
-        <input type="hidden" id="brandsLength" value = "<?=count($brands)?>">
+        <input type="hidden" id="brandsLength" value = "<?=count($shoesBrands)?>">
         <input type="hidden" name="filterByBrand" id="brandsArray" value = "<?=""?>">
         <!-- <input type="hidden" name="sort" id="sort" value =""> -->
         <button type="submit" name='filter' class = 'btn btn-primary'>Filter</button>
