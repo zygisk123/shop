@@ -66,21 +66,9 @@
 
     selectedBrands = getArrayOfSelBrands(brandsLength);
 
-        function fix(array) {
-            for (let i = 0; i < 4; i++) {
-                cb = document.getElementById(i);
-                if (cb.checked) {
-                array[selectedID] = cb.value;
-                selectedID++;
-                }
-                
-            }
-        }
-
     function getArrayOfSelBrands(length) {
         selected = [];
-        array = [];
-        arrayID = [];
+        selectedArray = [];
         selectedID = 0;
         string = "";
         brandsArray = document.getElementById("brandsArray")
@@ -88,31 +76,37 @@
 
             checkBox = document.getElementById(i).addEventListener('click', event => {
                 if(event.target.checked) {
-                    checkBoxValue = "`"+document.getElementById(i).value+"`";
+                    checkBoxValue = "'"+document.getElementById(i).value+"'";
                     selected[selectedID] = checkBoxValue;
-                    arrayID[selectedID] = i;
                     selectedID++;
-                   array = selected
                 }else{
-                    for (let a = 0; a < selectedID; a++) {
-                        selected.splice(arrayID[i], 1);
-                        selectedID--;
-                        array = selected;                   
+                    cbValue = "'"+document.getElementById(i).value+"'";
+                    for (let a = 0; a < selected.length; a++) {
+                        if (cbValue == selected[a]) {
+                            selected.splice(a, 1);
+                        }
                     }
                 }
-                console.log(array);
-                brandsArray.value = array;
+                if (selected.length > length) {
+                    selected = [];
+                }
+                // for (let a = 0; a < selected.length; a++) {
+                //         if (!selected[a]) {
+                //             selected.splice(a, 1);
+                //         }
+                // }
+                console.log(selected);
+                brandsArray.value = selected;
             });
+            
             cb = document.getElementById(i);
             if (cb.checked) {
-                selected[selectedID] = cb.value;
+                selected[selectedID] = "'"+cb.value+"'";
                 selectedID++;
             }
-            // if (i == length-1) {
-            // }
+            console.log(selected);
+            brandsArray.value = selected;
         }
-        console.log(selected);
-        brandsArray.value = selected;
     }
 
 </script>
