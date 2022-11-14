@@ -8,32 +8,20 @@
             <div class="col-4">
                 <div class="name">
                     <h1>
-                        <?=$item->name?>
+                        <?=$showBrand->name?>
                     </h1>
-                    <h1>
-                        <?=$item->price." eur"?>
-                    </h1>
-                    <h3>
-                        <?="Size: ".$item->size?>
-                    </h3>
-                </div>
-                <div class="name">
-                    <h5>Description</h5>
-                    <a>
-                        <?=$item->about?>
-                    </a>
                 </div>
                 <div class="row mt-3">
                     <div class="col-6">
-                        <form action="<?=$_USER_PATH.'/views/shop/edit.php'?>" method="get">
-                            <input type="hidden" name="id" value="<?=$item->id?>">
-                            <button type="submit" name="goToEdit" class="btn btn-primary">Edit</button>
+                        <form action="<?=$_USER_PATH.'/views/brand/edit.php'?>" method="get">
+                            <input type="hidden" name="showBrandID" value="<?=$showBrand->id?>">
+                            <button type="submit" name="goToEdit2" class="btn btn-primary">Edit</button>
                         </form>
                     </div>
                     <div class="col-6">
-                        <form action="<?=$_USER_PATH.'/views/shop/showAll.php'?>" method="get">
-                            <input type="hidden" name="id" value="<?=$item->id?>">
-                            <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                        <form action="<?=$_USER_PATH.'/views/brand/showAll.php'?>" method="get">
+                            <input type="hidden" name="showBrandID" value="<?=$showBrand->id?>">
+                            <button type="submit" name="deleteBrand" class="btn btn-danger">Delete</button>
                         </form>
                     </div>
                 </div>

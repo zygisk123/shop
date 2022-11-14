@@ -13,7 +13,7 @@
 
                     <?php foreach($brands as $brand){ ?>
                         <div class="item d-inline col-3 mt-3 mb-3">
-                            <a href = <?=$_USER_PATH."/views/brand/show.php?brand=".$brand->id?>>
+                            <a href = <?=$_USER_PATH."/views/brand/show.php?brandID=".$brand->id?>>
                                 <div class="brandName">
                                     <?php echo $brand->name;?>
                                 </div>

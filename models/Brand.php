@@ -27,8 +27,8 @@ class Brand {
     public static function create()
     {
         $db = new DB();
-        $stmt = $db->conn->prepare("INSERT INTO `items`( `name`, `price`, `size`, `about`) VALUES (?,?,?,?)");
-        $stmt->bind_param("sdds", $_POST['name'], $_POST['price'], $_POST['size'], $_POST['about']);
+        $stmt = $db->conn->prepare("INSERT INTO `shoe_brands`(`brandName`) VALUES (?)");
+        $stmt->bind_param("s", $_POST['name']);
         $stmt->execute();
 
         $stmt->close();
@@ -37,22 +37,22 @@ class Brand {
 
     public static function find($id)
     {
-        $item = new Item();
+        $brand = new Brand();
         $db = new DB();
-        $query = "SELECT * FROM `items` WHERE `id` = " . $id;
+        $query = "SELECT * FROM `shoe_brands` WHERE `id` = " . $id;
         $result = $db->conn->query($query);
         while ($row = $result->fetch_assoc()) {
-            $item = new Item($row['id'], $row['name'], $row['price'], $row['size'], $row['about']);
+            $brand = new Brand($row['id'], $row['brandName']);
         }
         $db->conn->close();
-        return $item;
+        return $brand;
     }
 
     public function update()
     {
         $db = new DB();
-        $stmt = $db->conn->prepare("UPDATE `items` SET `name`= ?,`price`= ?, `size` = ?, `about` = ? WHERE `id` = ?");
-        $stmt->bind_param("sddsi", $this->name, $this->price, $this->size, $this->about, $this->id);
+        $stmt = $db->conn->prepare("UPDATE `shoe_brands` SET `brandName`= ? WHERE `id` = ?");
+        $stmt->bind_param("si", $this->name, $this->id);
         $stmt->execute();
         $stmt->close();
         $db->conn->close();
@@ -61,9 +61,11 @@ class Brand {
     public static function destroy($id)
     {
         $db = new DB();
-        $stmt = $db->conn->prepare("DELETE FROM `items` WHERE `id` = ?");
+        $stmt = $db->conn->prepare("DELETE FROM `shoe_brands` WHERE `id` = ?");
         $stmt->bind_param("i", $id);
-        $stmt->execute();
+        if(!$stmt->execute()) {
+            print_r( $stmt->error_list);
+           }
 
         $stmt->close();
         $db->conn->close(); 
