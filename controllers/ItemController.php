@@ -1,6 +1,8 @@
 <?php
 
 include $_ADMIN_PATH."/models/Item.php";
+include $_ADMIN_PATH."/helperClasses/Validator.php";
+
 class ItemController {
 
     public static function getAll()
@@ -9,7 +11,11 @@ class ItemController {
     }
 
     public static function addItem()
-    {
+    {   
+        if (Validator::validate()) {
+            header("Location:" . "http://".$_SERVER['SERVER_NAME']."/shop/views/shop/add.php");
+            die;
+        }
         Item::create();
     }
 
@@ -20,6 +26,10 @@ class ItemController {
 
     public static function updateItem()
     {
+        if (Validator::validate()) {
+            header("Location:" . "http://".$_SERVER['SERVER_NAME']."/shop/views/shop/add.php");
+            die;
+        }
         $item = New Item();
         $item->id = $_POST['id'];
         $item->name = $_POST['name'];

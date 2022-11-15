@@ -15,13 +15,9 @@
                     <select class="form-select" name="brand" id="itemBrand">
                         <option value="">All</option>
                         <?php foreach ($shoesBrands as $key => $sb) {?>
-                            <option <?= ($item->brandID == $sb->id)  ? "selected" : "" ?> value="<?=$sb->id?>"><?=$sb->name?></option>
+                            <option <?= ($item->brandID == $sb->id)? "selected" : "" ?> value="<?=$sb->id?>"><?=$sb->name?></option>
                         <?php } ?>  
                     </select>
-                    <!-- <div class="mb-3">
-                        <label for="itemBrand" class="form-label">Brand</label>
-                        <input type="text" class="form-control" name = "brand" id="itemBrand" value = "//$item->brand">
-                    </div>                     -->
                     <div class="price">
                         <label for="itemPrice" class="form-label">Price</label>
                         <input type="number" name = "price"  step= '0.01' class="form-control" id="itemPrice" value = "<?=$item->price?>">
