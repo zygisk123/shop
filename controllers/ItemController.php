@@ -26,8 +26,8 @@ class ItemController {
 
     public static function updateItem()
     {
-        if (Validator::validate()) {
-            header("Location:" . "http://".$_SERVER['SERVER_NAME']."/shop/views/shop/add.php");
+        if (Validator::validateEdit()) {
+            header("Location:" . "http://".$_SERVER['SERVER_NAME']."/shop/views/shop/edit.php");
             die;
         }
         $item = New Item();

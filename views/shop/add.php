@@ -37,7 +37,7 @@ if (isset($_SESSION['POST'])) {
                     <div class="mb-3">
                         <select class="form-select" name="size" id="size">
                             <option value="">All</option>
-                            <?php $size = 39; for ($i=0; $i < 10; $i++) { ?>
+                            <?php $size = 39; for ($i=0; $i < 20; $i++) { ?>
                                 <?=$size += 0.5?>
                                 <option <?=($old and $_SESSION['POST']['size'] == $size)? "selected" : "" ?> value="<?=$size?>"><?=$size?></option>
                             <?php } ?>  
@@ -45,7 +45,8 @@ if (isset($_SESSION['POST'])) {
                     </div>
                     <div class="mb-3">
                         <label for="itemAbout" class="form-label">Info about item</label>
-                        <textarea name = "about" id="itemAbout" rows="4" cols="47">
+                        <textarea  name = "about" id="itemAbout" rows="4" cols="47">
+                            <?=($old)? $_SESSION['POST']['about'] : "" ?>
                         </textarea>
                     </div>
                     <button type="submit" class="btn btn-primary" name = 'addItem'>Submit</button>
