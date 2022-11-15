@@ -52,21 +52,18 @@
     </div>
     <div class="row mt-2 mb-3">
         <div class="col-5">
-            <input type="number" step= '0.01' class="form-control" name = "userInputFrom">
+            <input <?=(isset($_GET["userInputFrom"])) ? ($_GET["userInputFrom"] != "") ? 'value = ' . $_GET["userInputFrom"] : '': '';?> type="number" step= '0.01' class="form-control" name = "userInputFrom">
         </div>
         <div class="col-2">
             <a>to</a>
         </div>
         <div class="col-5">
-            <input type="number" step= '0.01' class="form-control" name = "userInputTo">
+            <input <?=(isset($_GET["userInputTo"])) ? ($_GET["userInputTo"] != "") ? 'value = ' . $_GET["userInputTo"] : '': '';?> type="number" step= '0.01' class="form-control" name = "userInputTo">
         </div>
     </div>
     <div class="form-check" name='search'>
-        <!-- <input type="hidden" name="from" value ="" id='valueFrom'>
-        <input type="hidden" name="to" value ="" id="valueTo"> -->
         <input type="hidden" id="brandsLength" value = "<?=count($shoesBrands)?>">
         <input type="hidden" name="filterByBrand" id="brandsArray" value = "<?=""?>">
-        <!-- <input type="hidden" name="sort" id="sort" value =""> -->
         <button type="submit" name='filter' class = 'btn btn-primary'>Filter</button>
     </div>
 </form>
