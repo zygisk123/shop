@@ -1,4 +1,14 @@
-<?php include "../components/head.php"; ?>
+<?php 
+include "../components/head.php"; 
+
+$old = false;
+if (isset($_SESSION['POST'])) {
+    if (count($_SESSION['POST']) != 0) {
+        $old = true;
+    }
+}
+
+?>
 
 <body>
     <?php include "../components/navigation.php"; ?>
@@ -9,22 +19,29 @@
                 <form method = 'post'>
                     <div class="mb-3">
                         <label for="itemName" class="form-label">Name</label>
-                        <input type="text" class="form-control" name = "name" id="itemName">
+                        <input name = "name" id="itemName" value="<?=($old)? $_SESSION['POST']['name'] : "" ?>" type="text" class="form-control">
                     </div>
+
                     <label for="brand" class="form-label">Brand</label>
                     <select class="form-select" name="shoeBrand" id="brand">
                         <option value="">All</option>
                         <?php foreach ($shoesBrands as $key => $sb) {?>
-                            <option value="<?=$sb->id?>"><?=$sb->name?></option>
+                            <option <?=($old and $_SESSION['POST']['shoeBrand'] == $sb->id)? "selected" : "" ?> value="<?=$sb->id?>"><?=$sb->name?></option>
                         <?php } ?>  
                     </select>
+                    
                     <div class="price">
                         <label for="itemPrice" class="form-label">Price</label>
-                        <input type="number" name = "price"  step= '0.01' class="form-control" id="itemPrice">
+                        <input value="<?=($old)? $_SESSION['POST']['price'] : "" ?>" type="number" name = "price"  step= '0.01' class="form-control" id="itemPrice">
                     </div>
                     <div class="mb-3">
-                        <label for="itemSize" class="form-label">Size</label>
-                        <input type="number" step='.5' name = "size" class="form-control" id="itemSize">
+                        <select class="form-select" name="size" id="size">
+                            <option value="">All</option>
+                            <?php $size = 39; for ($i=0; $i < 10; $i++) { ?>
+                                <?=$size += 0.5?>
+                                <option <?=($old and $_SESSION['POST']['size'] == $size)? "selected" : "" ?> value="<?=$size?>"><?=$size?></option>
+                            <?php } ?>  
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="itemAbout" class="form-label">Info about item</label>
@@ -40,3 +57,7 @@
     <?php include $_ADMIN_PATH . "/views/components/bottom.php"; ?>
 </body>
 </html>
+
+<?php
+$_SESSION['POST'] = [];
+?>

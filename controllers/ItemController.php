@@ -58,6 +58,10 @@ class ItemController {
 
     public static function filter()
     {
+        if (Validator::validateFilter()) {
+            header("Location:" . "http://".$_SERVER['SERVER_NAME']."/shop/views/shop/showAll.php");
+            die;
+        }
         $items = Item::filter();
         return $items;
     }

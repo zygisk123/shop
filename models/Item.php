@@ -55,10 +55,10 @@ class Item {
     {
         $item = new Item();
         $db = new DB();
-        $query = "SELECT `i`.`id`, `i`.`name`, `i`.`price`, `i`.`size`, `i`.`about`, `sb`.`brandName` FROM `items` `i` JOIN `shoe_brands` `sb` ON `sb`.`id` = `i`.`brand_id` WHERE `i`.`id` = " . $id;
+        $query = "SELECT `i`.`id`, `i`.`name`, `i`.`price`, `i`.`size`, `i`.`about`, `i`.`brand_ID`, `sb`.`brandName` FROM `items` `i` JOIN `shoe_brands` `sb` ON `sb`.`id` = `i`.`brand_id` WHERE `i`.`id` = " . $id;
         $result = $db->conn->query($query);
         while ($row = $result->fetch_assoc()) {
-            $item = new Item($row['id'], $row['name'], $row['price'], $row['size'], $row['about'], $row['brandName']);
+            $item = new Item($row['id'], $row['name'], $row['price'], $row['size'], $row['about'], $row['brand_ID'] , $row['brandName']);
         }
         $db->conn->close();
         return $item;

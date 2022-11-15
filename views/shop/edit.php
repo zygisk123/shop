@@ -1,4 +1,14 @@
-<?php include "../components/head.php"; ?>
+<?php include "../components/head.php"; 
+
+$old = false;
+if (isset($_SESSION['POST'])) {
+    if (count($_SESSION['POST']) != 0) {
+        $old = true;
+    }
+}
+
+?>
+
 
 <body>
     <?php include "../components/navigation.php"; ?>
@@ -24,7 +34,13 @@
                     </div>
                     <div class="mb-3">
                         <label for="itemSize" class="form-label">Size</label>
-                        <input type="number" step='.5' name = "size" class="form-control" id="itemSize" value = "<?=$item->size?>">
+                        <select class="form-select" name="size" id="size">
+                            <option value="">All</option>
+                            <?php $size = 39; for ($i=0; $i < 10; $i++) { ?>
+                                <?=$size += 0.5?>
+                                <option <?=(($old and $_SESSION['POST']['size'] == $size) or ($item->size == $size) )? "selected":"" ?> value="<?=$size?>"><?=$size?></option>
+                            <?php } ?>  
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="itemAbout" class="form-label">Info about item </label>
@@ -42,3 +58,6 @@
 </body>
 </html>
 
+<?php
+$_SESSION['POST'] = [];
+?>

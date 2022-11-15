@@ -39,15 +39,31 @@ public static function validate()
         $hasError = true;
     }
 
-    // if($hasError){
-    //     foreach ($_POST as $key => $value) {
-    //         $_SESSION['POST'][$key] = $value;
-    //     }
-    // }
-
+    if($hasError){
+        foreach ($_POST as $key => $value) {
+            $_SESSION['POST'][$key] = $value;
+        }
+    }
+    
     return $hasError;
 }
 
+public static function validateFilter()
+{
+    $hasError = false;
+    
+    if ($_GET['userInputTo'] < $_GET['userInputFrom']) {
+        $_SESSION['errors'][] = "Kaina Nuo negali buti mazesne uz kaina iki";
+        $hasError = true;
+        
+    }
+    if($hasError){
+        foreach ($_GET as $key => $value) {
+            $_SESSION['GET'][$key] = $value;
+        }
+    }
+    return $hasError;
+}
 
 
 
