@@ -63,15 +63,15 @@ if(strpos($_SERVER['REQUEST_URI'], "/brand/") !== false){
         if (count($_GET) == 0) {
             $brands = ItemBrandController::getAll();
         }
-        //////
+
         if (isset($_GET['brandID'])){
             $showBrand = ItemBrandController::showBrand($_GET['brandID']);
         }    
-        //////////
+
         if (isset($_GET['goToEdit2'])){
             $brand = ItemBrandController::showBrand($_GET['showBrandID']);
         }
-        ///////////
+
         if (isset($_GET['deleteBrand'])){
             ItemBrandController::deleteBrand($_GET['showBrandID']);
             header("Location: ".$_USER_PATH."/views/brand/showAll.php");

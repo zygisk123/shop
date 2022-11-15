@@ -17,6 +17,9 @@
                                 <div class="brandName">
                                     <?php echo $brand->name;?>
                                 </div>
+                                <!-- <div class="brandName">
+                                    <?//php echo $brand->items;?>
+                                </div> -->
                             </a>
                         </div>
                     <?php } ?>

@@ -11,6 +11,11 @@
                         <?=$showBrand->name?>
                     </h1>
                 </div>
+                <div class="amount">
+                    <h1>
+                        <?="Items made: ".$showBrand->items?>
+                    </h1>
+                </div>
                 <div class="row mt-3">
                     <div class="col-6">
                         <form action="<?=$_USER_PATH.'/views/brand/edit.php'?>" method="get">

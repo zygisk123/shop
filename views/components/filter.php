@@ -2,10 +2,23 @@
     <div class="form-check">
         <h6 class = "mt-3 mb-1" >Brand</h6>
         <?php foreach ($shoesBrands as  $key => $brand) {?>
-            <input <?=(isset($_GET["sortByBrand".$brand->id]))?($_GET["sortByBrand".$brand->id] == $brand->name) ? "checked" : '':'';?> class="form-check-input" type="checkbox" value="<?= $brand->name?>" name=<?="sortByBrand".$brand->id?> id="<?=$key?>">
-            <?php
-                echo $brand->id . " " .$brand->name . "<br>";
-            ?>
+            <div class="row">
+
+                <div class="col-1">
+                    <input <?=(isset($_GET["sortByBrand".$brand->id]))?($_GET["sortByBrand".$brand->id] == $brand->name) ? "checked" : '':'';?> class="form-check-input" type="checkbox" value="<?= $brand->name?>" name=<?="sortByBrand".$brand->id?> id="<?=$key?>">
+                </div>
+                <div class="col-6">
+                    <?php
+                        echo $brand->name ;
+                    ?>  
+                </div> 
+                <div class="col-4">               
+                    <?php
+                        echo $brand->items ."<br>";
+                    ?>  
+                </div>
+
+            </div>
         <?php } ?>
     </div>
     <div class="form-check2">
@@ -68,13 +81,12 @@
 
     function getArrayOfSelBrands(length) {
         selected = [];
-        selectedArray = [];
         selectedID = 0;
-        string = "";
-        brandsArray = document.getElementById("brandsArray")
+        brandsArray = document.getElementById("brandsArray");
         for (let i = 0; i < length; i++) {
 
             checkBox = document.getElementById(i).addEventListener('click', event => {
+
                 if(event.target.checked) {
                     checkBoxValue = "'"+document.getElementById(i).value+"'";
                     selected[selectedID] = checkBoxValue;
@@ -87,16 +99,9 @@
                         }
                     }
                 }
-                if (selected.length > length) {
-                    selected = [];
-                }
-                // for (let a = 0; a < selected.length; a++) {
-                //         if (!selected[a]) {
-                //             selected.splice(a, 1);
-                //         }
-                // }
-                console.log(selected);
-                brandsArray.value = selected;
+                cleanArray = selected.filter(function () { return true })
+                console.log(cleanArray);
+                brandsArray.value = cleanArray;
             });
             
             cb = document.getElementById(i);
@@ -104,7 +109,7 @@
                 selected[selectedID] = "'"+cb.value+"'";
                 selectedID++;
             }
-            console.log(selected);
+           // console.log(selected);
             brandsArray.value = selected;
         }
     }

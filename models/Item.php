@@ -107,9 +107,11 @@ class Item {
         $db = new DB();
         $query = "SELECT * FROM `items` `i` join `shoe_brands` `sb` on `sb`.`id` = `i`.`brand_id`";
         $first = true;
-        $BrandsList = $_GET['filterByBrand'];
-        $query .= "WHERE `brandName` in (" . ($BrandsList). ")";
-        echo $query;
+        if ($_GET['filterByBrand'] != "") {
+            $BrandsList = $_GET['filterByBrand'];
+            $query .= "WHERE `brandName` in (" . ($BrandsList). ")";
+            echo $query;
+        }
         $result = $db->conn->query($query);
 
         while ($row = $result->fetch_assoc()) {
